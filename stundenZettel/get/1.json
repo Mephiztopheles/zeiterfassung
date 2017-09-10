@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "titel": "Stundenzettel Anwendung",
+  "projekt": {
+    "id": 1
+  },
+  "start": 1504850400000,
+  "ende": 1504855800000,
+  "beschreibung": " - Angular app erstellt\n - Componente geschrieben"
+}

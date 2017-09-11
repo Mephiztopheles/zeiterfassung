@@ -16,7 +16,6 @@ export class StundenzettelListeComponent {
     id: null,
     projekt: null
   };
-  projects;
   stundenzettel = [];
   stundenZettelGefiltert = [];
   @Input()
@@ -25,12 +24,8 @@ export class StundenzettelListeComponent {
   _de;
 
   constructor(private hibernate: HibernateService) {
-    this.projects = [];
-    this.projects.push(new Projekt({name: 'Test', id: 1}));
-    this.projects.push(new Projekt({name: 'Support', id: 2}));
-    hibernate.get(1, StundenZettel).subscribe((response: object) => {
-      this.stundenzettel.push(new StundenZettel(response));
-      hibernate.save(this.stundenzettel[0]);
+    hibernate.list(StundenZettel).subscribe(response => {
+      this.stundenzettel = response;
       this.setFilter();
     });
 

@@ -121,7 +121,7 @@ export class StundenzettelListeComponent {
     if (this.filter.start) {
       data.start = new Date(this.filter.start);
       data.start.setHours(8);
-    } else {
+    } else if (letzterEintrag) {
       data.start = new Date(letzterEintrag.ende);
     }
     this.entry = new StundenZettel(data);

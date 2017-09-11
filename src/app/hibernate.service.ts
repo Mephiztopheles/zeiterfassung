@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
 import {Model} from "./model";
 import 'rxjs/add/operator/map'
+import {environment} from "../environments/environment";
 
 @Injectable()
 export class HibernateService {
@@ -14,7 +15,7 @@ export class HibernateService {
   }
 
   get(id: number, model: any) {
-    return this.http.get(`http://localhost/zeiterfassung/${model.controller}/get/${id}.json`).map(response => response.json());
+    return this.http.get(`${environment.api}/${model.controller}/get.php?id=${id}`).map(response => response.json());
   }
 
 }

@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "titel": "Programmierung",
+    "projekt": {
+      "id": 1
+    },
+    "start": 1504994400000,
+    "ende": 1505001600000
+  },
+  {
+    "id": 2,
+    "titel": "Support",
+    "projekt": {
+      "id": 2
+    },
+    "start": 1504994400000,
+    "ende": 1504998000000
+  },
+  {
+    "id": 3,
+    "titel": "Weiterbildung",
+    "projekt": {
+      "id": 3
+    },
+    "start": 1504994400000,
+    "ende": 1504999800000
+  },
+  {
+    "start": "2017-09-10T00:00:00.000Z",
+    "id": 4,
+    "ende": "2017-09-10T00:30:00.000Z",
+    "titel": "Test"
+  }
+]

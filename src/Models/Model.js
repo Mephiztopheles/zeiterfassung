@@ -15,10 +15,14 @@ angular.module( environment.name ).service( "Model", [ "$http", function ( $http
         }
 
         save() {
-            return $http.post( `${environment.api}/${this.constructor.controller}/save.php`,this ).then( response => Object.assign( this, response.data ) );
+            return $http.post( `${environment.api}/${this.constructor.controller}/save.php`, this.serialize() ).then( response => Object.assign( this, new this.constructor( response.data ) ) );
         }
 
-        static get() {
+        delete() {
+            return $http.delete( `${environment.api}/${this.constructor.controller}/delete.php?id=${this.id}` ).then( response => response.data );
+        }
+
+        static get( id ) {
             return $http.get( `${environment.api}/${this.controller}/get.php?id=${id}` ).then( response => new this( response.data ) );
         }
 
@@ -32,6 +36,10 @@ angular.module( environment.name ).service( "Model", [ "$http", function ( $http
         }
 
         init() {
+        }
+
+        serialize() {
+            return new Serializer( this );
         }
     }
 

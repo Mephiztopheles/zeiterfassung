@@ -56,19 +56,21 @@ function StundenZettelController( $scope, StundenZettel ) {
         $scope.entry.ende.setFullYear( $scope.entry.start.getFullYear() );
         $scope.entry.ende.setMonth( $scope.entry.start.getMonth() );
         $scope.entry.ende.setDate( $scope.entry.start.getDate() );
-
+        let response;
         if ( $scope.current ) {
-            $scope.entry.save().then( response => {
+            response = $scope.entry.save().then( response => {
+                console.log( response );
                 Object.assign( $scope.current, response );
-                $scope.setFilter();
             } );
         } else {
-            $scope.entry.save().then( response => {
+            response = $scope.entry.save().then( response => {
                 $scope.stundenzettel.push( response );
-                $scope.setFilter();
             } );
         }
-        $scope.cancel();
+        response.then( () => {
+            $scope.setFilter();
+            $scope.cancel();
+        } );
     };
     $scope.cancel      = function () {
         $scope.entry   = null;
@@ -76,7 +78,7 @@ function StundenZettelController( $scope, StundenZettel ) {
     };
     $scope.create      = function () {
         let data           = {};
-        let letzterEintrag = $scope.stundenZettelGefiltert.sort( ( a, b ) => a.ende.getTime() < b.ende.getTime() ? 1 : -1 )[ 0 ];
+        let letzterEintrag = Object.assign( [], $scope.stundenZettelGefiltert ).sort( ( a, b ) => a.ende.getTime() < b.ende.getTime() ? 1 : -1 )[ 0 ];
         if ( $scope.filter.start ) {
             data.start = new Date( $scope.filter.start );
             data.start.setHours( 8 );
@@ -93,9 +95,20 @@ function StundenZettelController( $scope, StundenZettel ) {
             } );
         return dauer;
     };
+    $scope.delete      = function ( eintrag ) {
+        eintrag.delete().then( () => {
+            let index = $scope.stundenzettel.indexOf( eintrag );
+            $scope.stundenzettel.splice( index, 1 );
+            $scope.setFilter();
+        } );
+    };
 
     StundenZettel.list().then( response => {
         $scope.stundenzettel = response;
+        $scope.stundenzettel.forEach( item => {
+            if ( item.projekt )
+                item.projekt = $scope.projekte.find( it => it.id === item.projekt.id );
+        } );
         $scope.setFilter();
     } );
 }

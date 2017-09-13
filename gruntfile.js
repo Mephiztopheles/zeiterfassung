@@ -9,7 +9,7 @@ module.exports = function ( grunt ) {
             },
             build  : {
                 src : [ "bower_components/jquery/dist/jquery.js", "bower_components/angular/angular.js", "src/environments/*js", "src/app.js", "src/*.js", "src/**/*.js", "!src/environments/environment.js" ],
-                dest: "dist/<%= pkg.name %>.min.js"
+                dest: "dist/<%= pkg.name %>.js"
             }
         }
     } );

@@ -14,7 +14,7 @@
                 <label class="lbl" for="project-select">Projekt:</label>
                 <select id="project-select" class="form-control" ng-change="setFilter()" ng-model="filter.projekt">
                     <option ng-value="null">Alle</option>
-                    <option ng-repeat="p in projects track by p.id" ng-value="p">{{p.name}}</option>
+                    <option ng-repeat="p in projekte track by p.id" ng-value="p">{{p.name}}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -45,6 +45,7 @@
                 <td>{{stundenZettel.dauer|dauer}}</td>
                 <td>
                     <button class="btn btn-primary" ng-click="edit(stundenZettel)">Bearbeiten</button>
+                    <button class="btn btn-danger" ng-click="delete(stundenZettel)">Löschen</button>
                 </td>
             </tr>
             <tr>
@@ -72,7 +73,7 @@
                             <label class="lbl" for="entry-projekt">Projekt:</label>
                             <select id="entry-projekt" class="form-control" ng-model="entry.projekt">
                                 <option ng-value="null">Kein</option>
-                                <option ng-repeat="p in projects track by p.id" ng-value="p">{{p.name}}</option>
+                                <option ng-repeat="p in projekte track by p.id" ng-value="p">{{p.name}}</option>
                             </select>
                         </div>
                         <div class="form-group">

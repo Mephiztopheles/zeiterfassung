@@ -1,6 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin:http://sz.mephiztopheles.wtf");
-header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+header('Content-Type: application/json');
 
 $json = json_decode(file_get_contents("data.json"));
 $data = json_decode(file_get_contents('php://input'));
@@ -11,9 +10,10 @@ if ($data->id)
             $val->beschreibung = $data->beschreibung;
             $val->start = $data->start;
             $val->ende = $data->ende;
+            $val->projekt = $data->projekt;
             $response = json_encode($json);
             file_put_contents("data.json", $response);
-            echo $val;
+            echo json_encode($val);
             exit;
         }
     }

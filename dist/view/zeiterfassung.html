@@ -1,5 +1,5 @@
 <div ng-controller="StundenZettelController">
-    <div class="">
+    <div>
         <div class="row">
             <div class="col-md-3">
                 <button class="form-control" ng-click="create()">Neu</button>
@@ -79,10 +79,12 @@
                         <div class="form-group">
                             <!--suppress XmlInvalidId -->
                             <label for="entry-von">Start</label>
+                            <input id="entry-von" type="text" class="form-control" date="entry.start">
                         </div>
                         <div class="form-group">
                             <!--suppress XmlInvalidId -->
                             <label for="entry-bis">Ende</label>
+                            <input id="entry-bis" type="text" class="form-control" date="entry.ende">
                         </div>
                         <button class="btn btn-success" ng-click="save()">Speichern</button>
                         <button class="btn btn-dark float-right" ng-click="cancel()">Abbrechen</button>
